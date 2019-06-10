@@ -1,0 +1,30 @@
+{
+  "name": "nyt-mongo-scraper",
+  "version": "1.0.0",
+  "description": "Unit 18 Homework - Mongo DB",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.5.14",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekeoid/nyt-mongo-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ekeoid/nyt-mongo-scraper/issues"
+  },
+  "homepage": "https://github.com/ekeoid/nyt-mongo-scraper#readme"
+}
