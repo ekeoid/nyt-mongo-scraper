@@ -1,0 +1,84 @@
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <ul class="collection">
+        {{#if articles}}
+            <li class="collection-item grey white-text"><h4>Your saved articles.</h4></li>
+        {{/if}}
+        {{#unless articles}}
+            <li class="collection-item grey white-text"><h4>You don't have any saved articles.</h4></li>
+        {{/unless}}
+        </ul>
+    </div>
+
+    <div class="col-lg-12 col-md-12 mx-auto">
+    {{#each articles}}
+        <div class="post-preview">
+            <a href={{this.link}}>
+                <h2 class="post-title">
+                {{this.title}}
+                </h2>
+                <h3 class="post-subtitle">
+                {{this.description}}
+                </h3>
+            </a>
+            {{!-- <p class="post-meta" style="color: white">. </p> --}}
+            {{!-- <p class="post-meta">Posted by
+                <a href="#">Start Bootstrap</a>
+                on September 24, 2019</p> --}}
+        </div>
+        <div class="btn-note">
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-{{this._id}}" data-id={{this._id}}><i class="fa fa-plus" aria-hidden="true"></i> Add Note</a>
+        </div>
+        <hr>
+
+        <!-- Add Comments Drop Down -->
+        <!-- Modal -->
+        <div class="modal fade" id="modal-{{this._id}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="form-add-{{this._id}}" action="/articles/{{this._id}}" method="post">
+                    <div class="modal-body">
+                        <!--  Title input -->
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="author_name">Note Title:</label>
+                                <input id="noteTitle" name="title" type="text" class="validate">
+                            </div>
+                        </div>
+                        <!-- Comment Input -->
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label for="comment_box">Your Note:</label>
+                                <textarea id="noteBody" name="body" class="materialize-textarea"></textarea>
+                            </div>
+                        </div>
+                        <!-- Submit Button -->
+                        {{!-- <div class="row">
+                            <div class="input-field col s12">
+                                <center><input class="btn add-comment-button" type="submit" >
+                                </center>
+                            </div>
+                        </div> --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" value="Submit" class="btn btn-primary" data-id="{{this._id}}">Save changes</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        {{/each}}
+        </div>
+    </div>
+</div>
+
+<hr>

@@ -303,6 +303,7 @@ header.masthead .post-heading .meta a {
 .post-preview > a > .post-subtitle {
   font-weight: 300;
   margin: 0 0 10px;
+  font-size: 1.0em;
 }
 
 .post-preview > .post-meta {
@@ -442,6 +443,14 @@ footer .copyright {
     float: right;
     top: -65px;
     right: 15px;
+  }
+
+  .post-preview > a > .post-title {
+    width: 80%;
+  }
+
+  .post-preview > a > .post-subtitle {
+    width: 80%;
   }
 }
 

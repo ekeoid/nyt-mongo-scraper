@@ -1,0 +1,29 @@
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 mx-auto">
+        {{#each articles}}
+            <div class="post-preview">
+                <a href={{this.link}}>
+                    <h2 class="post-title">
+                    {{this.title}}
+                    </h2>
+                    <h3 class="post-subtitle">
+                    {{this.description}}
+                    </h3>
+                </a>
+                {{!-- <p class="post-meta" style="color: white">. </p> --}}
+                {{!-- <p class="post-meta">Posted by
+                    <a href="#">Start Bootstrap</a>
+                    on September 24, 2019</p> --}}
+            </div>
+            <div class="btn-save">
+                <a class="btn btn-primary" data-id={{this._id}}><i class="fa fa-plus" aria-hidden="true"></i> Save Article</a>
+            </div>
+            <hr>
+        {{/each}}
+        </div>
+    </div>
+</div>
+
+<hr>
