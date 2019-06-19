@@ -14,7 +14,7 @@
     <div class="col-lg-12 col-md-12 mx-auto">
     {{#each articles}}
         <div class="post-preview">
-            <a href={{this.link}}>
+            <a class="post-link" href={{this.link}}>
                 <h2 class="post-title">
                 {{this.title}}
                 </h2>
@@ -22,14 +22,22 @@
                 {{this.description}}
                 </h3>
             </a>
-            {{!-- <p class="post-meta" style="color: white">. </p> --}}
-            {{!-- <p class="post-meta">Posted by
-                <a href="#">Start Bootstrap</a>
-                on September 24, 2019</p> --}}
         </div>
+        
+        <div class="btn-show">
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapse-{{this._id}}" data-id={{this._id}}><i class="fa fa-plus" aria-hidden="true"></i> Show Notes</a>
+        </div>
+        
         <div class="btn-note">
-            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal-{{this._id}}" data-id={{this._id}}><i class="fa fa-plus" aria-hidden="true"></i> Add Note</a>
+            <button class="btn btn-tertiary" type="button" data-toggle="modal" data-target="#modal-{{this._id}}" data-id={{this._id}}><i class="fa fa-plus" aria-hidden="true"></i> Add Note</a>
         </div>
+        
+        <div class="collapse" style="font-size: 0.85em" id="collapse-{{this._id}}">
+            <div class="card card-body" id="notes">
+                
+            </div>
+        </div>
+
         <hr>
 
         <!-- Add Comments Drop Down -->
@@ -68,8 +76,8 @@
                         </div> --}}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" value="Submit" class="btn btn-primary" data-id="{{this._id}}">Save changes</button>
+                        <button type="button" class="btn btn-quartenary" data-dismiss="modal">Close</button>
+                        <button type="submit" value="Submit" class="btn btn-tertiary" data-id="{{this._id}}">Save changes</button>
                     </div>
                 </form>
                 </div>

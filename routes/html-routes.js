@@ -57,7 +57,7 @@ router.get("/scrape", function(req, res) {
             result.link = $(this)
                 .find("a")
                 .attr("href") ?
-                "https://www.nytimes.com" +
+                URL +
                 $(this)
                     .find("a")
                     .attr("href")
