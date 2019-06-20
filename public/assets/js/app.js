@@ -75,6 +75,23 @@ function setupEventHandlers() {
         });
     });
 
+    $(document).on("click", ".deletenote", function() {
+        event.preventDefault();
+        let thisId = $(this).attr("data-id");
+        
+        $.ajax({
+            method: "PUT",
+            url: "/notes/" + thisId
+        })
+        .then(function(data) {
+            console.log(data);
+            $(this).empty();
+        });
+
+        
+
+    });
+
 
 
 } // end setupEventHandlers()
