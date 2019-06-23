@@ -491,6 +491,34 @@ footer .copyright {
   /* padding: 2px 2px; */
 }
 
+.delete-wrapper {
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 100%;
+  top: 10px;
+  overflow: auto;
+}
+.deletearticle {
+  /* width: 30px; */
+}
+
+.note-title, .note-body {
+  font-size: 0.9em;
+}
+
+#noteTitle {
+  width: 350px;
+}
+
+#noteBody {
+  width: 348px;
+}
+
+.collection > li {
+  list-style-type: none;
+}
+
 @media only screen and (min-width: 992px) {
   .btn-save, .btn-show {
     position: relative;

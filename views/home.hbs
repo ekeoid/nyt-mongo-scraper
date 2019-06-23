@@ -1,7 +1,12 @@
 <!-- Main Content -->
 <div class="container">
+    {{#if articles}}
+            <p class="text-muted">Scraping completed</p>
+        {{/if}}
     <div class="row">
+        {{body}}
         <div class="col-lg-12 col-md-12 mx-auto">
+        
         {{#each articles}}
             <div class="post-preview">
                 <a href={{this.link}}>

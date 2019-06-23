@@ -33,7 +33,7 @@ function _msg (req) {
 router.get("/", function (req, res) {
     console.log(_msg(req), "Loading default home page");
     // res.status(200).send("Hello World!");
-    res.render("home", { body: "Hello Handlebars!"});
+    res.render("home", { body: "Welcome. Click scrape to get started."});
 });
 
 router.get("/scrape", function(req, res) {
@@ -74,7 +74,10 @@ router.get("/scrape", function(req, res) {
                 .find("img")
                 .attr("src");
 
-            articles.push(result);
+            if (result.title !== "") {
+                articles.push(result);
+            }
+            
             
             // db.Article.create(result)
             //     .then(function(dbArticle) {
@@ -196,12 +199,63 @@ router.post("/articles/:id", function(req, res) {
     })
     .then(function(dbArticle) {
         console.log({ article: dbArticle });
-        res.json(dbArticle);
+        // res.json(dbArticle);
+        // res.redirect(req.get('referer'));
+        db.Article.find({})
+            .then(function(dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+                // res.json(dbArticle);
+                res.render("articles", {articles: dbArticle});
+            })
+            .catch(function(err) {
+            // If an error occurred, send it to the client
+                res.json(err);
+            });
     })
     .catch(function(err) {
         console.log(err);
         res.json(err);
     });
 });
+
+// Route for deleting a saved Article
+router.post("/delete/:id", function(req,res) {
+    console.log(_msg(req), "Deleting article _id: " + req.params.id);
+
+    db.Article.deleteOne({ _id: req.params.id })
+    .then(function(dbArticle) {
+        console.log({ article: dbArticle });
+        // res.json(dbArticle);
+        console.log("trying to redirect");
+        res.redirect("/articles");
+    })
+    .catch(function(err) {
+        console.log(err);
+        res.json(err);
+    });
+});
+
+// Route for deleting note by id
+// db.getCollection('articles')
+//  .update({ note: ObjectId("5d0ab37ebdef5644ec1c2d5f")}, {$pull: { note: ObjectId("5d0ab37ebdef5644ec1c2d5f") }})
+router.put("/notes/:id", function (req, res) {
+    console.log(_msg(req), "Deleting note _id: " + req.params.id);
+
+    db.Note.deleteOne({ _id: req.params.id })
+        .then(function(dbNote) {
+            console.log({ note: dbNote });
+            return db.Article.updateOne({ note: req.params.id }, {$pull: { note: req.params.id }}, { new: true });        
+        })
+        .then(function(dbArticle) {
+            console.log({ article: dbArticle });
+            res.json(dbArticle);
+        })
+        .catch(function(err) {
+            console.log(err);
+            res.json(err);
+        });
+
+});
+
 
 module.exports = router;

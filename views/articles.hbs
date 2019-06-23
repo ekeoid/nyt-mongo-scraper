@@ -3,16 +3,19 @@
     <div class="row">
         <ul class="collection">
         {{#if articles}}
-            <li class="collection-item grey white-text"><h4>Your saved articles.</h4></li>
+            <li class="collection-item grey white-text"><h2>Your saved articles</h2></li>
         {{/if}}
         {{#unless articles}}
-            <li class="collection-item grey white-text"><h4>You don't have any saved articles.</h4></li>
+            <li class="collection-item grey white-text"><h2>You don't have any saved articles</h2></li>
         {{/unless}}
         </ul>
     </div>
 
     <div class="col-lg-12 col-md-12 mx-auto">
     {{#each articles}}
+        <div class="delete-wrapper">
+            <button data-id={{this._id}} class="btn btn-primary deletearticle">X</button>
+        </div>
         <div class="post-preview">
             <a class="post-link" href={{this.link}}>
                 <h2 class="post-title">
@@ -46,7 +49,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Add a note</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -55,15 +58,15 @@
                     <div class="modal-body">
                         <!--  Title input -->
                         <div class="row">
-                            <div class="input-field col s12">
-                                <label for="author_name">Note Title:</label>
+                            <div class="input-field ">
+                                <label class="note-title" for="author_name">Title:</label>
                                 <input id="noteTitle" name="title" type="text" class="validate">
                             </div>
                         </div>
                         <!-- Comment Input -->
                         <div class="row">
-                            <div class="input-field col s12">
-                                <label for="comment_box">Your Note:</label>
+                            <div class="input-field ">
+                                <label class="note-body" for="comment_box">Note:</label>
                                 <textarea id="noteBody" name="body" class="materialize-textarea"></textarea>
                             </div>
                         </div>
@@ -77,7 +80,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-quartenary" data-dismiss="modal">Close</button>
-                        <button type="submit" value="Submit" class="btn btn-tertiary" data-id="{{this._id}}">Save changes</button>
+                        <button type="submit" value="Submit" class="btn btn-tertiary" data-id="{{this._id}}">Save note</button>
                     </div>
                 </form>
                 </div>

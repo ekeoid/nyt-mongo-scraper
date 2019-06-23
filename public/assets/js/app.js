@@ -35,12 +35,10 @@ function setupEventHandlers() {
         $("#notes").empty();
         let thisId = $(this).children().attr("data-id");
 
-        // Now make an ajax call for the Article
         $.ajax({
             method: "GET",
             url: "/articles/" + thisId
         })
-            // With that done, add the note information to the page
         .then(function(data) {
             console.log(data.note);
 
@@ -56,42 +54,70 @@ function setupEventHandlers() {
                 $("#notes").append(newDiv);
             });
 
-            // // The title of the article
-            // $("#notes").append("<h2>" + data.title + "</h2>");
-            // // An input to enter a new title
-            // $("#notes").append("<input id='titleinput' name='title' >");
-            // // A textarea to add a new note body
-            // $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-            // // A button to submit a new note, with the id of the article saved to it
-            // $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-        
-            // // If there's a note in the article
-            // if (data.note) {
-            //     // Place the title of the note in the title input
-            //     $("#titleinput").val(data.note.title);
-            //     // Place the body of the note in the body textarea
-            //     $("#bodyinput").val(data.note.body);
-            // }
         });
     });
 
     $(document).on("click", ".deletenote", function() {
         event.preventDefault();
         let thisId = $(this).attr("data-id");
+        let thisArtId = $(this).parent().parent().parent().attr("id").slice(9);
         
         $.ajax({
             method: "PUT",
             url: "/notes/" + thisId
         })
         .then(function(data) {
-            console.log(data);
-            $(this).empty();
+            console.log("PUT response: ", data);
+            $("#notes").empty();
+
+        })
+        .then(function(data) {
+            console.log("jQuery");
+            console.log(thisArtId);
+            
+            $.ajax({
+                method: "GET",
+                url: "/articles/" + thisArtId
+            })
+            .then(function(data) {
+                console.log(data.note);
+    
+                data.note.forEach(function(element){
+                    let newDiv = $("<div>");
+                    newDiv.addClass("note-container");
+    
+                    newDiv.append("<button data-id='" + element._id + "' class='btn btn-primary deletenote'>X</button>");
+                    newDiv.append("<strong>" + element.title + "</strong><br/>");
+                    newDiv.append("<span>" + element.body + "</span>");
+                    newDiv.append("<hr/>");
+    
+                    $("#notes").append(newDiv);
+                });
+            });
         });
 
         
 
     });
 
+    $(document).on("click", ".deletearticle", function() {
+        event.preventDefault();
+        let thisId = $(this).attr("data-id");
+        console.log(thisId);
 
+        $.ajax({
+            method: "POST",
+            url: "/delete/" + thisId
+        })
+        .then(function(data) {
+            console.log("PUT delete");
+            location.reload();
+            // $.ajax({
+            //     method: "GET",
+            //     url: "/articles"
+            // });
+
+        });
+    });
 
 } // end setupEventHandlers()
