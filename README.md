@@ -17,7 +17,6 @@ You can find the instructions for this assignment here: [homework-instructions.m
 - mongoose [`npm-package`](https://www.npmjs.com/package/mongoose)
 - cheerio [`npm-package`](https://www.npmjs.com/package/cheerio)
 - axios [`npm-package`](https://www.npmjs.com/package/axios)
-(maybes)
 - jQuery [`library`](https://api.jquery.com/)
 - Bootstrap [`framework`](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
 
