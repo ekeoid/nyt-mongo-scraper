@@ -25,6 +25,7 @@ You can find the instructions for this assignment here: [homework-instructions.m
 - **Feature 1**
   1. Note deletion, deletes throughout both collection (Articles + Notes). However did not explore article deletion to chain delete notes.
 
+
 ## Usage
 - Click "Scrape".
 - Save articles.
